@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app_1</title>
+
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    
+</body>
+</html>
+
+<script type="module">
+
+
+    import navbar from "./components/navbar.js"
+    document.body.innerHTML = navbar();
+
+    let searchContent = document.getElementById("searchBox");
+
+    import { getItems, appendData, searchBarContent } from "./scripts/fetchData.js";
+
+  
+    let timerId;
+
+    searchContent.addEventListener("input",()=>{
+
+        if(timerId){
+            return false;
+        }
+
+        setTimeout(()=>{
+
+            showData();
+            timerId = null;
+
+        },1000);
+
+
+
+    });
+
+
+
+    function showData(){
+
+        let value = searchContent.value;
+        // console.log('value:', value)
+
+        if (value.length <= 2) {
+            return false;
+        }
+
+        let res = getItems(`https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`);
+
+        res.then((data) => {
+
+            let page = document.querySelector(".mainPage");
+            let items = document.querySelector(".items");
+
+            appendData(data, page);
+
+            searchBarContent(data,items);
+
+
+
+        })
+
+
+    }
+
+
+</script>

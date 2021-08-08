@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+</body>
+</html>
+
+
+<script type="module">
+
+    import navbar from "./components/navbar.js"
+    document.body.innerHTML = navbar();
+
+    let page = document.querySelector(".mainPage");
+
+    let div_latest = document.createElement("div");
+
+    div_latest.setAttribute("class", "latest");
+
+    let div_data = document.createElement("div");
+
+    div_data.setAttribute("class","divData")
+
+
+    async function latest(){
+
+        let res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+        let data = await res.json();
+
+        let temp = data.meals[0];
+        console.log('temp:', data.meals[0])
+        
+        let div_image = document.createElement("div");
+
+        div_image.setAttribute("class","imageBox")
+
+
+        let image = document.createElement("img");
+
+        image.src = temp.strMealThumb;
+
+        image.setAttribute("class","imageWidth")
+
+        div_image.append(image);
+
+        let p_region = document.createElement("p");
+
+        p_region.innerHTML = `Region : ${ temp.strArea}`;
+
+        let p_name = document.createElement("p");
+
+        p_name.innerHTML = `Name : ${temp.strMeal}`;
+
+        let p_category = document.createElement("p");
+
+        p_category.innerHTML = `Category : ${temp.strCategory}`;
+
+        
+        let p_inst = document.createElement("p");
+
+        p_inst.innerHTML = `Instructions : ${temp.strInstructions}`;
+        
+        div_data.append(p_name, p_region,p_category,p_inst);
+        div_latest.append(div_image);
+
+        page.append(div_latest,div_data);
+
+    
+
+    }
+
+    latest();
+
+
+
+
+</script>

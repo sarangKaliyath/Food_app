@@ -1,0 +1,82 @@
+.border{
+    border: 1px solid black;
+}
+
+#navbar{
+    height: 100px;
+    display: flex;
+    border-bottom: 1px solid rgb(207, 204, 204); 
+}
+
+.container,.links{
+    font-size: 25px;
+    width: 50%;
+    height: 100%;
+}
+
+#searchBox{
+    width: 50%;
+    height: 30px;
+    margin-top: 35px;
+    margin-left: 20%;
+}
+#searchBox:focus{
+    outline:none;
+}
+#searchBox + button{
+    height: 35px;
+    padding: 1%;
+    width: 90px;
+}
+
+.links{
+    border-color: red;
+    display: flex;
+    justify-content: space-evenly;
+}
+.links>a{
+    margin-top: 35px;
+    text-decoration: none;
+}
+
+.items{
+    width:50.5%;
+    height: 100px;
+    margin-left: 20%;
+    display: none;
+    overflow-y: scroll;
+    border-top: none;
+    background-color: white;
+    font-size: 16px;
+    border: 1px solid black;
+
+}
+.items::-webkit-scrollbar{
+    display: none;
+}
+
+.mainPage{
+
+    width: 100%;
+    height: 1250px;
+    margin-top:80px;
+    display:grid;
+    grid-template-columns: repeat(4,18%);
+    grid-gap: 4%;
+    grid-template-rows: repeat(3,32%);
+    justify-content:center;
+    padding-top:15px;
+    overflow-y: scroll;
+
+}
+.mainPage::-webkit-scrollbar{
+    display: none;
+}
+
+.imgWidth{
+    width:100%;
+}
+
+.round{
+    border-radius: 10px;
+}
